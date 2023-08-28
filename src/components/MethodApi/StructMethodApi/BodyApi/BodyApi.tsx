@@ -1,29 +1,34 @@
 import { useState } from "react";
-import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import tmp from "src/models/ApiBody";
 
-export default function BodyApi() {
+type Props = {
+    colorTheme: string;
+};
+
+export default function BodyApi(props: Props) {
+    const { colorTheme } = props;
     const [tryApi, setTryApi] = useState<boolean>(false);
-    const colorBtn = tryApi ? "error" : "inherit";
     return (
         <>
             <div>
-                <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center justify-between px-5 py-2 mb-2">
                     <p className="font-bold">Parameters</p>
-                    <Button
-                        color={colorBtn}
-                        variant="outlined"
-                        size="small"
+                    <button
+                        className={`px-5 py-0.5 font-bold border-2 border-solid rounded-md ${
+                            tryApi
+                                ? "border-red-500 text-red-500"
+                                : " border-gray-500"
+                        }`}
                         onClick={() => setTryApi((prev) => !prev)}
                     >
                         {tryApi ? "Cancel" : " Try it out"}
-                    </Button>
+                    </button>
                 </div>
                 <Box
                     sx={{
                         width: "100%",
-                        backgroundColor: "success.main",
+                        backgroundColor: colorTheme,
                     }}
                 >
                     <div className="grid grid-cols-12 gap-2 px-5 pt-6">
@@ -36,6 +41,11 @@ export default function BodyApi() {
                                 * required
                             </span>
                         </div>
+                        {/* <input
+                            type="text"
+                            value={JSON.stringify(tmp)}
+                            className="col-span-11 min-h-[100px]"
+                        /> */}
                         <div className="col-span-11">
                             <span>order placed for purchasing the pet</span>
                             <br />

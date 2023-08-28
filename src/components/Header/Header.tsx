@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { AiFillLock, AiOutlineDown } from "react-icons/ai";
+import { useState, useContext } from "react";
+import { AiFillLock, AiOutlineDown, AiFillUnlock } from "react-icons/ai";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
@@ -8,21 +8,49 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import { useTheme } from "@mui/material/styles";
+
+import { UserAuthorizedContext } from "src/App";
+import { UserAuthorizedContextType } from "src/types/UserAuthorizedContextType";
 
 export default function Header() {
+    const authorize = useContext(
+        UserAuthorizedContext
+    ) as UserAuthorizedContextType;
     const [open, setOpen] = useState(false);
-    const theme = useTheme();
-    const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
+    const [valueInput, setValueInput] = useState(
+        localStorage.getItem("token") || ""
+    );
 
+    const hideToken = (token: string): string => {
+        const length = token.length;
+        let newTokenHide = "";
+        for (let i = 0; i < length; i++) {
+            newTokenHide += "*";
+        }
+        return newTokenHide;
+    };
     const handleClickOpen = () => {
         setOpen(true);
     };
-
     const handleClose = () => {
         setOpen(false);
     };
+    const handleVerifyToken = (
+        event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+    ) => {
+        if (valueInput.trim().length > 0) {
+            authorize.setAuthorize(valueInput);
+            localStorage.setItem("token", valueInput);
+        } else event.preventDefault();
+    };
+    const handleRemoveToken = (
+        event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+    ) => {
+        authorize.setAuthorize("");
+        setValueInput("");
+        localStorage.removeItem("token");
+    };
+
     return (
         <div className="mx-10 mt-14">
             <p className="text-3xl font-extrabold">Swagger Petstore</p>
@@ -40,16 +68,20 @@ export default function Header() {
                         </Button>
                     </div>
                     <div>
-                        <Button variant="outlined" onClick={handleClickOpen}>
-                            Authorize
-                            <span className="ml-2">{<AiFillLock />}</span>
-                        </Button>
-                        <Dialog
-                            // fullScreen={fullScreen}
-                            open={open}
-                            onClose={handleClose}
-                            // aria-labelledby="responsive-dialog-title"
+                        <Button
+                            variant="outlined"
+                            color="success"
+                            onClick={handleClickOpen}
                         >
+                            Authorize
+                            {authorize.authorize === "" && (
+                                <span className="ml-2">{<AiFillLock />}</span>
+                            )}
+                            {authorize.authorize !== "" && (
+                                <span className="ml-2">{<AiFillUnlock />}</span>
+                            )}
+                        </Button>
+                        <Dialog open={open} onClose={handleClose}>
                             <Box
                                 component={"form"}
                                 sx={{
@@ -71,10 +103,15 @@ export default function Header() {
                                     </span>
                                 </DialogTitle>
                                 <DialogContent>
-                                    <DialogContentText className="grid grid-cols-1 gap-2 px-5 pt-5 border-t border-solid">
+                                    <DialogContentText className="grid grid-cols-1 gap-2 px-5 pt-5 border-t border-solid min-w-[522px]">
                                         <div className="text-lg font-bold">
                                             api_key (apiKey)
                                         </div>
+                                        {authorize.authorize !== "" && (
+                                            <div className="text-xs font-extrabold">
+                                                Authorized
+                                            </div>
+                                        )}
                                         <div className="text-xs">
                                             Name: api_key
                                         </div>
@@ -84,20 +121,43 @@ export default function Header() {
                                         <div>
                                             <div className="text-xs font-bold">
                                                 Value:{" "}
+                                                {hideToken(authorize.authorize)}
                                             </div>
-                                            <input
-                                                type="text"
-                                                className="min-w-[522px] border border-solid border-[#ccc] py-1 px-2 rounded"
-                                            />
+                                            {authorize.authorize === "" && (
+                                                <input
+                                                    type="text"
+                                                    className="min-w-[522px] border border-solid border-[#ccc] py-1 px-2 rounded"
+                                                    value={valueInput}
+                                                    onChange={(e) =>
+                                                        setValueInput(
+                                                            e.target.value
+                                                        )
+                                                    }
+                                                />
+                                            )}
                                         </div>
                                         <div className="flex items-center justify-center">
-                                            <DialogActions className="">
-                                                <button
-                                                    onClick={handleClose}
-                                                    className="font-bold text-[#49CC90] border-2 border-solid border-[#49CC90] py-0.5 px-5 rounded"
-                                                >
-                                                    Authorize
-                                                </button>
+                                            <DialogActions>
+                                                {authorize.authorize === "" && (
+                                                    <button
+                                                        onClick={(e) =>
+                                                            handleVerifyToken(e)
+                                                        }
+                                                        className="font-bold text-[#49CC90] border-2 border-solid border-[#49CC90] py-0.5 px-5 rounded"
+                                                    >
+                                                        Authorize
+                                                    </button>
+                                                )}
+                                                {authorize.authorize !== "" && (
+                                                    <button
+                                                        onClick={(e) =>
+                                                            handleRemoveToken(e)
+                                                        }
+                                                        className="px-5 py-0.5 font-bold border-2 border-solid rounded border-[#ccc] text-gray-700"
+                                                    >
+                                                        Logout
+                                                    </button>
+                                                )}
                                                 <button
                                                     onClick={handleClose}
                                                     className="px-5 py-0.5 font-bold border-2 border-solid rounded border-[#ccc] text-gray-700"

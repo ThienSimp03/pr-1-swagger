@@ -1,12 +1,17 @@
 import Box from "@mui/material/Box";
 import tmp from "src/models/ApiBody";
 
-export default function ExampleApi() {
+type Props = {
+    colorTheme: string;
+};
+
+export default function ExampleApi(props: Props) {
+    const { colorTheme } = props;
     return (
         <Box
             sx={{
                 width: "100%",
-                backgroundColor: "success.main",
+                backgroundColor: colorTheme,
             }}
         >
             <div className="grid grid-cols-12 gap-2 px-5 py-6">

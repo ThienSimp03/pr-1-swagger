@@ -15,7 +15,7 @@ export default function ResponsesApi() {
         setTypeRes(content);
     };
     useEffect(() => {
-        console.log(switchTypeRes);
+        // console.log(switchTypeRes);
     }, [switchTypeRes]);
     return (
         <div className="flex items-center justify-between my-2 font-bold">

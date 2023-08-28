@@ -1,37 +1,59 @@
-import Accordion from "@mui/material/Accordion";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import AccordionDetails from "@mui/material/AccordionDetails";
-// import Typography from "@mui/material/Typography";
+import React from "react";
+import {
+    Accordion,
+    AccordionDetails,
+    AccordionSummary,
+    Box,
+} from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import Post from "./Post";
+import TitleApi from "./StructMethodApi/TitleApi";
+import BodyApi from "./StructMethodApi/BodyApi";
+import ResponsesApi from "./StructMethodApi/ResponsesApi";
+import ExampleApi from "./StructMethodApi/ExampleApi";
+import { TypeMethodApi, ColorMethodApi } from "src/types/TypeMethodApi";
 
-export default function MethodApi() {
+type Props = {
+    typeMethod: TypeMethodApi;
+};
+
+const color: Record<string, string> = {
+    get: "blue",
+    delete: "red",
+    post: "green",
+    put: "yellow",
+};
+
+export default function MethodApi(props: Props) {
+    const { typeMethod } = props;
+    const { nameMethod, colorMethod, descriptionMethod, urlMethod } =
+        typeMethod;
     return (
-        <div>
-            <Accordion>
-                <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls="panel1a-content"
-                    id="panel1a-header"
-                >
-                    <div className="flex flex-row items-center justify-between gap-2">
-                        <div>
-                            <div className="px-3 py-1 font-semibold text-white bg-green-500 border border-solid rounded">
-                                POST
-                            </div>
-                        </div>
-                        <div className="flex flex-row gap-2">
-                            <span className="font-semibold">
-                                '/store/order'
-                            </span>
-                            <span>Place an order for a pet</span>
-                        </div>
+        <Accordion>
+            <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+            >
+                <div className="flex flex-row items-center justify-between gap-2">
+                    <div>
+                        <Box
+                            className={`px-3 py-1 font-semibold text-white bg-${color[nameMethod]}-500 border border-solid rounded`}
+                        >
+                            {nameMethod}
+                        </Box>
                     </div>
-                </AccordionSummary>
-                <AccordionDetails>
-                    <Post />
-                </AccordionDetails>
-            </Accordion>
-        </div>
+                    <div className="flex flex-row gap-2">
+                        <span className="font-semibold">{urlMethod}</span>
+                        <span>{descriptionMethod}</span>
+                    </div>
+                </div>
+            </AccordionSummary>
+            <AccordionDetails>
+                <TitleApi colorTheme={ColorMethodApi[colorMethod]} />
+                <BodyApi colorTheme={ColorMethodApi[colorMethod]} />
+                <ResponsesApi />
+                <ExampleApi colorTheme={ColorMethodApi[colorMethod]} />
+            </AccordionDetails>
+        </Accordion>
     );
 }
