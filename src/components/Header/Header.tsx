@@ -41,6 +41,7 @@ export default function Header() {
         if (valueInput.trim().length > 0) {
             authorize.setAuthorize(valueInput);
             localStorage.setItem("token", valueInput);
+            handleClose();
         } else event.preventDefault();
     };
     const handleRemoveToken = (

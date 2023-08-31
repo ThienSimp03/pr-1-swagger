@@ -1,2 +1,2 @@
-import MethodApi from "./MethodApi";
-export default MethodApi;
+import Method from './MethodApi'
+export default Method
