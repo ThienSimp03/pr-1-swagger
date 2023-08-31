@@ -23,6 +23,7 @@ export default function Method(props: Props) {
   const arrayFields = fields.flatMap((item) => Object.keys(item))
   const [tryItOut, setTryItOut] = useState<boolean>(false)
   const [resApi, setResApi] = useState<any>('')
+  const authorize = useContext(UserAuthorizedContext) as UserAuthorizedContextType
   const objectData: typeObjectSchema = {}
   arrayFields.forEach((item) => {
     objectData[item] = ' '
@@ -33,26 +34,34 @@ export default function Method(props: Props) {
     const URL = `https://apibank.5chaumedia.com${url}`
     try {
       if (nameMethod === 'POST') {
-        // console.log(data)
-        const result = await axios.post(URL, qs.stringify(data))
-        console.log(result)
+        const result = await axios.post(URL, qs.stringify(data), {
+          headers: { 'content-type': 'application/x-www-form-urlencoded', 'x-access-token': localStorage.getItem('token') }
+        })
+        if (result.data?.accessToken !== undefined) {
+          authorize.setAuthorize(result.data.accessToken)
+          localStorage.setItem('token', result.data.accessToken)
+        }
         setResApi(result)
       } else if (nameMethod === 'GET') {
-        const result = await axios.get(URL)
+        const result = await axios.get(URL, {
+          headers: { 'content-type': 'application/x-www-form-urlencoded', 'x-access-token': localStorage.getItem('token') }
+        })
         setResApi(result)
       } else if (nameMethod === 'PUT') {
-        const result = await axios.put(URL, qs.stringify(data))
+        const result = await axios.put(URL, qs.stringify(data), {
+          headers: { 'content-type': 'application/x-www-form-urlencoded', 'x-access-token': localStorage.getItem('token') }
+        })
         setResApi(result)
       } else {
-        const result = await axios.delete(URL)
+        const result = await axios.delete(URL, {
+          headers: { 'content-type': 'application/x-www-form-urlencoded', 'x-access-token': localStorage.getItem('token') }
+        })
         setResApi(result)
       }
     } catch (error) {
       alert(error)
     }
   }
-
-  const authorize = useContext(UserAuthorizedContext) as UserAuthorizedContextType
   return (
     <div>
       <Accordion disabled={authorize.authorize === '' ? true : false}>
