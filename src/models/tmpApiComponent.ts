@@ -36,25 +36,29 @@ const tmpApiComponent: ComponentApi[] = [
           {
             title: {
               required: true,
-              typeInput: 'text'
+              typeInput: 'text',
+              default: ''
             }
           },
           {
             content: {
               required: false,
-              typeInput: 'text'
+              typeInput: 'text',
+              default: ''
             }
           },
           {
             coin: {
               required: false,
-              typeInput: 'text'
+              typeInput: 'text',
+              default: ''
             }
           },
           {
             bonus: {
               required: false,
-              typeInput: 'text'
+              typeInput: 'text',
+              default: ''
             }
           }
         ],
@@ -96,13 +100,15 @@ const tmpApiComponent: ComponentApi[] = [
           {
             email: {
               required: true,
-              typeInput: 'text'
+              typeInput: 'text',
+              default: ''
             }
           },
           {
             password: {
               required: true,
-              typeInput: 'password'
+              typeInput: 'password',
+              default: ''
             }
           }
         ],
@@ -126,16 +132,45 @@ const tmpApiComponent: ComponentApi[] = [
     methods: [
       {
         nameMethod: 'POST',
-        url: '/api/upload',
+        url: '/api/type_gate',
         title: 'upload image',
         fields: [
           {
             image: {
               required: true,
-              typeInput: 'file'
+              typeInput: 'file',
+              default: ''
+            }
+          },
+          {
+            name: {
+              required: true,
+              typeInput: 'text',
+              default: ''
+            }
+          },
+          {
+            price: {
+              required: true,
+              typeInput: 'text',
+              default: ''
+            }
+          },
+          {
+            status: {
+              required: true,
+              typeInput: 'text',
+              default: 'ACTIVE'
             }
           }
         ],
+        example: []
+      },
+      {
+        nameMethod: 'GET',
+        url: '/api/type_gates',
+        title: 'get all image',
+        fields: [],
         example: []
       }
     ]

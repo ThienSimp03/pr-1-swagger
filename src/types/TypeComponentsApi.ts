@@ -1,24 +1,25 @@
 export type Field = {
-    typeInput: string;
-    required: boolean;
-};
+  typeInput: string
+  required: boolean
+  default: string
+}
 
 type Example = {
-    status: number;
-    body: any | object;
-};
+  status: number
+  body: any | object
+}
 
 export type MethodApi = {
-    nameMethod: string;
-    title: string;
-    url: string;
-    fields: Record<string, Field>[];
-    example: Example[] | undefined;
-};
+  nameMethod: string
+  title: string
+  url: string
+  fields: Record<string, Field>[]
+  example: Example[] | undefined
+}
 
 export type ComponentApi = {
-    name: string;
-    title: string;
-    description: string;
-    methods: MethodApi[];
-};
+  name: string
+  title: string
+  description: string
+  methods: MethodApi[]
+}
