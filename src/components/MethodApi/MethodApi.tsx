@@ -2,13 +2,14 @@ import { Fragment, useContext, useState } from 'react'
 import { Accordion, AccordionDetails, AccordionSummary, Box, TextField } from '@mui/material'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import axios from 'axios'
-import { config } from 'dotenv'
 import qs from 'qs'
 
 import { UserAuthorizedContextType } from 'src/types/UserAuthorizedContextType'
 import { UserAuthorizedContext } from 'src/App'
 import { MethodApi } from 'src/types/TypeComponentsApi'
 import { ColorMethodApi, ColorMethodTheme } from 'src/types/TypeMethodApi'
+import ResMethodApi from './ResMethodApi'
+import ExampleMethodApi from './ExampleMethodApi'
 // config()
 
 type Props = {
@@ -124,7 +125,7 @@ export default function Method(props: Props) {
                             backgroundColor: ColorMethodTheme[nameMethod]
                         }}
                     >
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, officia!
+                        {title}
                     </Box>
                     <div className='flex items-center justify-between px-5 py-2 mb-2'>
                         <p className='font-bold'>Parameters</p>
@@ -240,55 +241,8 @@ export default function Method(props: Props) {
                         </Box>
                     </form>
                     {/* Responses */}
-                    <div className='flex items-center justify-between px-5 py-2 mb-2'>
-                        <p className='font-bold'>Response</p>
-                        <div className='flex items-center gap-5'>
-                            <p className='text-xs font-bold'>Response content type</p>
-                        </div>
-                    </div>
-                    {resApi !== '' && (
-                        <Box
-                            sx={{
-                                width: '100%',
-                                backgroundColor: ColorMethodTheme[nameMethod]
-                            }}
-                        >
-                            <div className='grid grid-cols-12 gap-2 px-5 pt-6'>
-                                <div className='col-span-1 text-xs'>{resApi.status}</div>
-                                <div className='bg-[#333333] text-white p-2 rounded text-xs font-semibold col-span-11 overflow-x-auto'>
-                                    {<pre>{JSON.stringify(resApi.data, null, 2)}</pre>}
-                                </div>
-                            </div>
-                        </Box>
-                    )}
-                    <div className='flex items-center justify-between px-5 py-2 mb-2'>
-                        <p className='font-bold'>Example</p>
-                    </div>
-                    <Box
-                        sx={{
-                            width: '100%',
-                            backgroundColor: ColorMethodTheme[nameMethod]
-                        }}
-                    >
-                        <div className='grid grid-cols-12 gap-2 px-5 py-6'>
-                            <div className='col-span-1 text-xs'>Code</div>
-                            <div className='col-span-11 text-xs'>Description</div>
-                            <div className='col-span-12 border-[#000] border-solid border-b-[0.5px]'></div>
-                            {example &&
-                                example.map((item, index) => (
-                                    <Fragment key={index}>
-                                        <div className='relative col-span-1'>
-                                            <span className='font-bold'>{item.status}</span>
-                                        </div>
-                                        <div className='col-span-11'>
-                                            <div className='bg-[#333333] text-white p-2 rounded text-xs font-semibold col-span-11 overflow-x-auto'>
-                                                {<pre>{JSON.stringify(item.body, null, 2)}</pre>}
-                                            </div>
-                                        </div>
-                                    </Fragment>
-                                ))}
-                        </div>
-                    </Box>
+                    <ResMethodApi resApi={resApi} backgroundColor={ColorMethodTheme[nameMethod]} />
+                    <ExampleMethodApi backgroundColor={ColorMethodTheme[nameMethod]} example={example} />
                 </AccordionDetails>
             </Accordion>
         </div>
