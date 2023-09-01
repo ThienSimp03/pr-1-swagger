@@ -2,12 +2,14 @@ import { Fragment, useContext, useState } from 'react'
 import { Accordion, AccordionDetails, AccordionSummary, Box, TextField } from '@mui/material'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import axios from 'axios'
+import { config } from 'dotenv'
 import qs from 'qs'
 
 import { UserAuthorizedContextType } from 'src/types/UserAuthorizedContextType'
 import { UserAuthorizedContext } from 'src/App'
 import { MethodApi } from 'src/types/TypeComponentsApi'
 import { ColorMethodApi, ColorMethodTheme } from 'src/types/TypeMethodApi'
+// config()
 
 type Props = {
     method: MethodApi
@@ -31,7 +33,8 @@ export default function Method(props: Props) {
     const [data, setData] = useState<typeObjectSchema>(objectData)
     const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        const URLHOST = `https://apibank.5chaumedia.com${url}`
+        // console.log()
+        const URLHOST = `${process.env.REACT_APP_ROOT_URL + url}`
         try {
             if (nameMethod === 'POST') {
                 if (data.hasOwnProperty('image')) {
