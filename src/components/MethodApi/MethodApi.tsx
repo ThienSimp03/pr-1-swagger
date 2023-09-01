@@ -252,7 +252,7 @@ export default function Method(props: Props) {
                         >
                             <div className='grid grid-cols-12 gap-2 px-5 pt-6'>
                                 <div className='col-span-1 text-xs'>{resApi.status}</div>
-                                <div className='bg-[#333333] text-white p-2 rounded text-xs font-semibold col-span-11 overflow-scroll'>
+                                <div className='bg-[#333333] text-white p-2 rounded text-xs font-semibold col-span-11 overflow-x-auto'>
                                     {<pre>{JSON.stringify(resApi.data, null, 2)}</pre>}
                                 </div>
                             </div>
@@ -275,11 +275,11 @@ export default function Method(props: Props) {
                                 example.map((item, index) => (
                                     <Fragment key={index}>
                                         <div className='relative col-span-1'>
-                                            <span className='font-bold'>{item?.status}</span>
+                                            <span className='font-bold'>{item.status}</span>
                                         </div>
                                         <div className='col-span-11'>
-                                            <div className='bg-[#333333] text-white p-2 rounded text-xs font-semibold'>
-                                                {<pre>{JSON.stringify(item?.body, null, 2)}</pre>}
+                                            <div className='bg-[#333333] text-white p-2 rounded text-xs font-semibold col-span-11 overflow-x-auto'>
+                                                {<pre>{JSON.stringify(item.body, null, 2)}</pre>}
                                             </div>
                                         </div>
                                     </Fragment>
