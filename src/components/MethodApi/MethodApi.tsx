@@ -100,7 +100,7 @@ export default function Method(props: Props) {
     }
     return (
         <div>
-            <Accordion disabled={authorize.authorize === '' ? true : false}>
+            <Accordion>
                 <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls='panel1a-content' id='panel1a-header'>
                     <div className='flex flex-row items-center justify-between gap-2'>
                         <div>

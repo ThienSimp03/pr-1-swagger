@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+// import { useContext } from 'react'
 import Accordion from '@mui/material/Accordion'
 import AccordionSummary from '@mui/material/AccordionSummary'
 import AccordionDetails from '@mui/material/AccordionDetails'
@@ -6,8 +6,8 @@ import AccordionDetails from '@mui/material/AccordionDetails'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 
-import { UserAuthorizedContext } from 'src/App'
-import { UserAuthorizedContextType } from 'src/types/UserAuthorizedContextType'
+// import { UserAuthorizedContext } from 'src/App'
+// import { UserAuthorizedContextType } from 'src/types/UserAuthorizedContextType'
 import { ComponentApi } from 'src/types/TypeComponentsApi'
 import Method from '../MethodApi'
 
@@ -34,12 +34,16 @@ type Props = {
 
 export default function ApiComponents(props: Props) {
     const { name, description, title, methods } = props.value
-    const authorize = useContext(UserAuthorizedContext) as UserAuthorizedContextType
+    // const authorize = useContext(UserAuthorizedContext) as UserAuthorizedContextType
     return (
         <div className='mb-5'>
             <ThemeProvider theme={theme}>
-                <Accordion disabled={authorize.authorize === '' ? true : false}>
-                    <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls='panel1a-content' id='panel1a-header'>
+                <Accordion>
+                    <AccordionSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls='panel1a-content'
+                        id='panel1a-header'
+                    >
                         <div className='flex justify-between w-full'>
                             <div className='flex flex-row items-center justify-between gap-2'>
                                 <span className='text-2xl font-bold'>{name}</span>
