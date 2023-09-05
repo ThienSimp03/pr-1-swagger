@@ -50,7 +50,7 @@ export default function ApiComponents(props: Props) {
                                 <span className='text-sm'>{title}</span>
                             </div>
                             <div className='flex flex-row items-center justify-between gap-2'>
-                                <span className='text-blue-700 text-sm mr-4'>{description}</span>
+                                <span className='text-blue-700 text-sm mr-2'>{description}</span>
                             </div>
                         </div>
                     </AccordionSummary>
