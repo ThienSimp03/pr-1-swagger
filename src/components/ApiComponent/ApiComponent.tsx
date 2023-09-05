@@ -36,28 +36,30 @@ export default function ApiComponents(props: Props) {
     const { name, description, title, methods } = props.value
     // const authorize = useContext(UserAuthorizedContext) as UserAuthorizedContextType
     return (
-        <div className='mb-5'>
+        <div className='mb-2'>
             <ThemeProvider theme={theme}>
-                <Accordion>
+                <Accordion className='hover:bg-[#faf9f9]'>
                     <AccordionSummary
-                        expandIcon={<ExpandMoreIcon />}
+                        expandIcon={<ExpandMoreIcon fontSize='large' />}
                         aria-controls='panel1a-content'
                         id='panel1a-header'
                     >
                         <div className='flex justify-between w-full'>
                             <div className='flex flex-row items-center justify-between gap-2'>
-                                <span className='text-2xl font-bold'>{name}</span>
-                                <span className=''>{title}</span>
+                                <span className=' font-semibold text-2xl'>{name}</span>
+                                <span className='text-sm'>{title}</span>
                             </div>
                             <div className='flex flex-row items-center justify-between gap-2'>
-                                <span className='text-blue-700'>{description}</span>
+                                <span className='text-blue-700 text-sm mr-4'>{description}</span>
                             </div>
                         </div>
                     </AccordionSummary>
                     <AccordionDetails>
-                        {methods.map((method, index) => (
-                            <Method method={method} key={index} />
-                        ))}
+                        <div className='flex flex-col gap-2'>
+                            {methods.map((method, index) => (
+                                <Method method={method} key={index} />
+                            ))}
+                        </div>
                     </AccordionDetails>
                 </Accordion>
             </ThemeProvider>

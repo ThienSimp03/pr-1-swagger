@@ -1,7 +1,6 @@
 import { useState, useContext } from 'react'
 import { AiFillLock, AiOutlineDown, AiFillUnlock } from 'react-icons/ai'
 import Stack from '@mui/material/Stack'
-import Button from '@mui/material/Button'
 import Dialog from '@mui/material/Dialog'
 import { Box } from '@mui/material'
 import DialogActions from '@mui/material/DialogActions'
@@ -47,20 +46,23 @@ export default function Header() {
     return (
         <div className='mx-10 mt-14'>
             <p className='text-3xl font-extrabold'>Swagger Petstore</p>
-            <div className='mt-40'>
+            <div className='mt-40 text-sm'>
                 <Stack direction='row' justifyContent='space-between' alignItems='center' spacing={12}>
                     <div>
-                        <Button variant='outlined' color='inherit'>
+                        <div className='border-2 border-solid border-gray-800 px-[10px] py-1 flex items-center justify-center font-bold rounded text-sm'>
                             HTTPS
-                            <span className='ml-2'>{<AiOutlineDown />}</span>
-                        </Button>
+                            <span className='pl-10 pr-2'>{<AiOutlineDown />}</span>
+                        </div>
                     </div>
                     <div>
-                        <Button variant='outlined' color='success' onClick={handleClickOpen}>
+                        <div
+                            className='text-[#49CC90] border-2 px-5 py-1  flex border-[#49CC90] items-center justify-center font-semibold rounded'
+                            onClick={handleClickOpen}
+                        >
                             Authorize
                             {authorize.authorize === '' && <span className='ml-2'>{<AiFillLock />}</span>}
                             {authorize.authorize !== '' && <span className='ml-2'>{<AiFillUnlock />}</span>}
-                        </Button>
+                        </div>
                         <Dialog open={open} onClose={handleClose}>
                             <Box
                                 component={'form'}

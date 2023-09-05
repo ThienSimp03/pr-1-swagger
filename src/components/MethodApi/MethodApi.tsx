@@ -101,11 +101,24 @@ export default function Method(props: Props) {
     return (
         <div>
             <Accordion>
-                <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls='panel1a-content' id='panel1a-header'>
+                <AccordionSummary
+                    expandIcon={<ExpandMoreIcon fontSize='large' />}
+                    aria-controls='panel1a-content'
+                    id='panel1a-header'
+                    sx={{
+                        backgroundColor: ColorMethodTheme[nameMethod],
+                        border: 1,
+                        borderColor: ColorMethodApi[nameMethod],
+                        borderRadius: 1,
+                        maxHeight: 20,
+                        height: 20,
+                        paddingLeft: 1
+                    }}
+                >
                     <div className='flex flex-row items-center justify-between gap-2'>
                         <div>
                             <Box
-                                className={`px-3 py-1 font-semibold text-white border border-solid rounded`}
+                                className={` py-1 font-semibold text-white border border-solid text-sm rounded min-w-[80px] text-center`}
                                 sx={{
                                     backgroundColor: ColorMethodApi[nameMethod]
                                 }}
@@ -113,14 +126,16 @@ export default function Method(props: Props) {
                                 {nameMethod}
                             </Box>
                         </div>
-                        <div className='flex flex-row gap-2'>
-                            <span>{title}</span>
-                        </div>
+                        <span className='text-[13px]'>{title}</span>
                     </div>
                 </AccordionSummary>
-                <AccordionDetails>
+                <AccordionDetails
+                    sx={{
+                        padding: 0
+                    }}
+                >
                     <Box
-                        className='p-5'
+                        className='p-5 text-sm'
                         sx={{
                             backgroundColor: ColorMethodTheme[nameMethod]
                         }}
@@ -130,7 +145,7 @@ export default function Method(props: Props) {
                     <div className='flex items-center justify-between px-5 py-2 mb-2'>
                         <p className='font-bold'>Parameters</p>
                         <button
-                            className={`px-5 py-0.5 font-bold border-2 border-solid rounded-md ${
+                            className={`px-5 py-0.5 font-bold border-2 border-solid rounded-md text-sm ${
                                 tryItOut ? 'border-red-500 text-red-500' : ' border-gray-500'
                             }`}
                             onClick={() => setTryItOut((prev) => !prev)}
@@ -146,9 +161,7 @@ export default function Method(props: Props) {
                             }}
                         >
                             {fields.length === 0 && (
-                                <div className='px-5 pt-6'>
-                                    <span className='pt-5'>No parameters</span>
-                                </div>
+                                <div className='p-5 text-sm max-h-[80px] flex items-center'>No parameters</div>
                             )}
                             {fields.length > 0 && (
                                 <div className='grid grid-cols-12 gap-2 px-5 pt-6'>
@@ -228,16 +241,16 @@ export default function Method(props: Props) {
                                     {/* End handle body */}
                                 </div>
                             )}
-                            <div className='pt-5 pb-2 bg-inherit'>
-                                {tryItOut && (
+                            {tryItOut && (
+                                <div className='pt-5 pb-2 bg-inherit'>
                                     <button
                                         className='flex justify-center w-full py-1 my-5 font-bold text-white bg-blue-500'
                                         type='submit'
                                     >
                                         Execute
                                     </button>
-                                )}
-                            </div>
+                                </div>
+                            )}
                         </Box>
                     </form>
                     {/* Responses */}
