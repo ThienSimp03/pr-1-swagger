@@ -187,86 +187,97 @@ export default function Method(props: Props) {
                             )}
                             {fields.length > 0 && (
                                 <div className='grid grid-cols-12 gap-2 px-5 pt-6'>
-                                    <div className='col-span-1 text-xs'>Name</div>
-                                    <div className='col-span-11 text-xs'>Description</div>
+                                    <div className='col-span-12 flex'>
+                                        <div className='flex-none pr-5 min-w-[120px] text-xs'>Name</div>
+                                        <div className='flex flex-col flex-1 gap-5 text-xs'>Description</div>
+                                    </div>
                                     <div className='col-span-12 border-[#000] border-solid border-b-[0.5px]'></div>
                                     {/* Handle body */}
                                     {fields.map((item, index) => {
                                         const { typeInput, required } = item[arrayFields[index]]
                                         return (
                                             <Fragment key={index}>
-                                                <div className='col-span-1 '>
-                                                    <span className='relative text-xs font-bold'>
-                                                        {arrayFields[index]}
-                                                        {required && (
-                                                            <span className='absolute top-[-10px] text-xs font-semibold text-red-500 left-full'>
-                                                                *required
-                                                            </span>
-                                                        )}
-                                                    </span>
-                                                </div>
-                                                <div className='flex flex-col col-span-11 gap-5'>
-                                                    <Box
-                                                        sx={{
-                                                            width: '100%',
-                                                            background: 'white'
-                                                        }}
-                                                    >
-                                                        {typeInput !== 'file' && (
-                                                            <TextField
-                                                                type={typeInput}
-                                                                size='small'
-                                                                fullWidth
-                                                                value={
-                                                                    item[arrayFields[index]].default !== ''
-                                                                        ? item[arrayFields[index]].default
-                                                                        : undefined
-                                                                }
-                                                                placeholder={
-                                                                    item[arrayFields[index]].default
-                                                                        ? ''
-                                                                        : arrayFields[index]
-                                                                }
-                                                                sx={{
-                                                                    '& .MuiOutlinedInput-root': {
-                                                                        '&.Mui-focused fieldset': {
-                                                                            borderColor: 'black'
-                                                                        }
-                                                                    },
-                                                                    '& label.Mui-focused': {
-                                                                        color: 'black'
+                                                <div className='col-span-12 flex'>
+                                                    <div className='flex-none pr-5 min-w-[120px]'>
+                                                        <span className='text-xs font-bold'>
+                                                            {arrayFields[index]}
+                                                            {required && (
+                                                                <span className='relative  top-[-10px] text-xs font-semibold text-red-500'>
+                                                                    *required
+                                                                </span>
+                                                            )}
+                                                        </span>
+                                                    </div>
+                                                    <div className='flex flex-col flex-1 gap-5'>
+                                                        <Box
+                                                            sx={{
+                                                                width: '100%',
+                                                                background: 'white'
+                                                            }}
+                                                        >
+                                                            {typeInput !== 'file' && (
+                                                                <TextField
+                                                                    type={typeInput}
+                                                                    size='small'
+                                                                    fullWidth
+                                                                    value={
+                                                                        item[arrayFields[index]].default !== ''
+                                                                            ? item[arrayFields[index]].default
+                                                                            : undefined
                                                                     }
-                                                                }}
-                                                                id={arrayFields[index]}
-                                                                disabled={!tryItOut}
-                                                                required={required ? true : false}
-                                                                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                                                                    setData((prev) => ({
-                                                                        ...prev,
-                                                                        [arrayFields[index]]: e.target.value
-                                                                    }))
-                                                                }
-                                                            />
-                                                        )}
-                                                        {typeInput === 'file' && (
-                                                            <input
-                                                                disabled={!tryItOut}
-                                                                className='px-1 py-2 border border-gray-500 border-solid rounded bg-white'
-                                                                type='file'
-                                                                placeholder='click to select your image'
-                                                                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                                                                    if (e.target.files && e.target.files.length > 0) {
-                                                                        return setData((prev) => ({
+                                                                    placeholder={
+                                                                        item[arrayFields[index]].default
+                                                                            ? ''
+                                                                            : arrayFields[index]
+                                                                    }
+                                                                    sx={{
+                                                                        '& .MuiOutlinedInput-root': {
+                                                                            '&.Mui-focused fieldset': {
+                                                                                borderColor: 'black'
+                                                                            }
+                                                                        },
+                                                                        '& label.Mui-focused': {
+                                                                            color: 'black'
+                                                                        }
+                                                                    }}
+                                                                    id={arrayFields[index]}
+                                                                    disabled={!tryItOut}
+                                                                    required={required ? true : false}
+                                                                    onChange={(
+                                                                        e: React.ChangeEvent<HTMLInputElement>
+                                                                    ) =>
+                                                                        setData((prev) => ({
                                                                             ...prev,
-                                                                            [arrayFields[index]]: (
-                                                                                e.target as HTMLInputElement
-                                                                            ).files
+                                                                            [arrayFields[index]]: e.target.value
                                                                         }))
                                                                     }
-                                                                }}
-                                                            ></input>
-                                                        )}
-                                                    </Box>
+                                                                />
+                                                            )}
+                                                            {typeInput === 'file' && (
+                                                                <input
+                                                                    disabled={!tryItOut}
+                                                                    className='px-1 py-2 border border-gray-500 border-solid rounded bg-white'
+                                                                    type='file'
+                                                                    placeholder='click to select your image'
+                                                                    onChange={(
+                                                                        e: React.ChangeEvent<HTMLInputElement>
+                                                                    ) => {
+                                                                        if (
+                                                                            e.target.files &&
+                                                                            e.target.files.length > 0
+                                                                        ) {
+                                                                            return setData((prev) => ({
+                                                                                ...prev,
+                                                                                [arrayFields[index]]: (
+                                                                                    e.target as HTMLInputElement
+                                                                                ).files
+                                                                            }))
+                                                                        }
+                                                                    }}
+                                                                ></input>
+                                                            )}
+                                                        </Box>
+                                                    </div>
                                                 </div>
                                             </Fragment>
                                         )
