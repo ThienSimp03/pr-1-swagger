@@ -52,7 +52,7 @@ export default function ApiComponents(props: Props) {
                     }}
                 >
                     <AccordionSummary
-                        className='hover:bg-[#faf9f9]'
+                        className='hover:bg-[#f2f1f1]'
                         expandIcon={<ExpandMoreIcon fontSize='large' fontWeight={'100'} />}
                         aria-controls='panel1a-content'
                         id='panel1a-header'
