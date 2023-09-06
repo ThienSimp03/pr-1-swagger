@@ -38,10 +38,22 @@ export default function ApiComponents(props: Props) {
     return (
         <div className='mb-2'>
             <ThemeProvider theme={theme}>
-                <Accordion>
+                <Accordion
+                    sx={{
+                        backgroundColor: 'inherit',
+                        boxShadow: 'none',
+                        // borderBottom: '1px solid black',
+                        '&:first-of-type': {
+                            borderRadius: '0px'
+                        },
+                        '&:last-of-type': {
+                            borderRadius: '0px'
+                        }
+                    }}
+                >
                     <AccordionSummary
                         className='hover:bg-[#faf9f9]'
-                        expandIcon={<ExpandMoreIcon fontSize='large' />}
+                        expandIcon={<ExpandMoreIcon fontSize='large' fontWeight={'100'} />}
                         aria-controls='panel1a-content'
                         id='panel1a-header'
                         sx={{
@@ -49,9 +61,7 @@ export default function ApiComponents(props: Props) {
                             '&': {
                                 minHeight: 60
                             },
-                            '.MuiAccordionSummary-content.Mui-expanded': {
-                                margin: '12px 0 !important'
-                            }
+                            borderBottom: '1px solid #C1C3C7'
                         }}
                     >
                         <div className='flex justify-between w-full'>

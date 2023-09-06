@@ -44,91 +44,98 @@ export default function Header() {
     }
 
     return (
-        <div className='mx-10 mt-14'>
-            <p className='text-3xl font-extrabold'>Swagger Petstore</p>
-            <div className='mt-40 text-sm'>
-                <Stack direction='row' justifyContent='space-between' alignItems='center' spacing={12}>
-                    <div>
-                        <div className='border-2 border-solid border-gray-800 px-[10px] py-1 flex items-center justify-center font-bold rounded text-sm'>
-                            HTTPS
-                            <span className='pl-10 pr-2'>{<AiOutlineDown />}</span>
+        <div className='w-full'>
+            <div className='bg-[#FAFAFA]'>
+                <p className='text-3xl font-extrabold pb-40 pt-14 w-[1420px] mx-auto '>Swagger Petstore</p>
+            </div>
+            <div className='w-full border-b-2 border-solid border-[#DFDFDF]'>
+                <div className='text-sm py-[30px] w-[1420px] mx-auto'>
+                    <Stack direction='row' justifyContent='space-between' alignItems='center' spacing={12}>
+                        <div>
+                            <div className='border-2 border-solid border-gray-800 px-[10px] py-1.5 flex items-center justify-center font-bold rounded text-sm'>
+                                HTTPS
+                                <span className='pl-10 pr-2'>{<AiOutlineDown />}</span>
+                            </div>
                         </div>
-                    </div>
-                    <div>
-                        <div
-                            className='text-[#49CC90] border-2 px-5 py-1  flex border-[#49CC90] items-center justify-center font-semibold rounded'
-                            onClick={handleClickOpen}
-                        >
-                            Authorize
-                            {authorize.authorize === '' && <span className='ml-2'>{<AiFillLock />}</span>}
-                            {authorize.authorize !== '' && <span className='ml-2'>{<AiFillUnlock />}</span>}
-                        </div>
-                        <Dialog open={open} onClose={handleClose}>
-                            <Box
-                                component={'form'}
-                                sx={{
-                                    minWidth: ' 648px,auto'
-                                }}
+                        <div>
+                            <div
+                                className='text-[#49CC90] border-2 px-8 py-1.5  flex border-[#49CC90] items-center justify-center font-semibold rounded'
+                                onClick={handleClickOpen}
                             >
-                                <DialogTitle id='responsive-dialog-title' className='flex items-center justify-between'>
-                                    <p className='font-bold'>Avaliable authorizations</p>
-                                    <span onClick={handleClose} className='font-bold'>
-                                        x
-                                    </span>
-                                </DialogTitle>
-                                <DialogContent>
-                                    <DialogContentText className='grid grid-cols-1 gap-2 px-5 pt-5 border-t border-solid min-w-[522px]'>
-                                        <div className='text-lg font-bold'>api_key (apiKey)</div>
-                                        {authorize.authorize !== '' && (
-                                            <div className='text-xs font-extrabold'>Authorized</div>
-                                        )}
-                                        <div className='text-xs'>Name: api_key</div>
-                                        <div className='text-xs'>In: header</div>
-                                        <div>
-                                            <div className='text-xs font-bold overflow-auto'>
-                                                Value: {hideToken(authorize.authorize)}
-                                            </div>
-                                            {authorize.authorize === '' && (
-                                                <input
-                                                    type='text'
-                                                    className='min-w-[522px] border border-solid border-[#ccc] py-1 px-2 rounded'
-                                                    value={valueInput}
-                                                    onChange={(e) => setValueInput(e.target.value)}
-                                                />
+                                Authorize
+                                {authorize.authorize === '' && <span className='ml-2'>{<AiFillLock />}</span>}
+                                {authorize.authorize !== '' && <span className='ml-2'>{<AiFillUnlock />}</span>}
+                            </div>
+                            <Dialog open={open} onClose={handleClose}>
+                                <Box
+                                    component={'form'}
+                                    sx={{
+                                        minWidth: ' 648px,auto'
+                                    }}
+                                >
+                                    <DialogTitle
+                                        id='responsive-dialog-title'
+                                        className='flex items-center justify-between'
+                                    >
+                                        <p className='font-bold'>Avaliable authorizations</p>
+                                        <span onClick={handleClose} className='font-bold'>
+                                            x
+                                        </span>
+                                    </DialogTitle>
+                                    <DialogContent>
+                                        <DialogContentText className='grid grid-cols-1 gap-2 px-5 pt-5 border-t border-solid min-w-[522px]'>
+                                            <div className='text-lg font-bold'>api_key (apiKey)</div>
+                                            {authorize.authorize !== '' && (
+                                                <div className='text-xs font-extrabold'>Authorized</div>
                                             )}
-                                        </div>
-                                        <div className='flex items-center justify-center'>
-                                            <DialogActions>
+                                            <div className='text-xs'>Name: api_key</div>
+                                            <div className='text-xs'>In: header</div>
+                                            <div>
+                                                <div className='text-xs font-bold overflow-auto'>
+                                                    Value: {hideToken(authorize.authorize)}
+                                                </div>
                                                 {authorize.authorize === '' && (
-                                                    <button
-                                                        onClick={(e) => handleVerifyToken(e)}
-                                                        className='font-bold text-[#49CC90] border-2 border-solid border-[#49CC90] py-0.5 px-5 rounded'
-                                                    >
-                                                        Authorize
-                                                    </button>
+                                                    <input
+                                                        type='text'
+                                                        className='min-w-[522px] border border-solid border-[#ccc] py-1 px-2 rounded'
+                                                        value={valueInput}
+                                                        onChange={(e) => setValueInput(e.target.value)}
+                                                    />
                                                 )}
-                                                {authorize.authorize !== '' && (
+                                            </div>
+                                            <div className='flex items-center justify-center'>
+                                                <DialogActions>
+                                                    {authorize.authorize === '' && (
+                                                        <button
+                                                            onClick={(e) => handleVerifyToken(e)}
+                                                            className='font-bold text-[#49CC90] border-2 border-solid border-[#49CC90] py-0.5 px-5 rounded'
+                                                        >
+                                                            Authorize
+                                                        </button>
+                                                    )}
+                                                    {authorize.authorize !== '' && (
+                                                        <button
+                                                            onClick={(e) => handleRemoveToken(e)}
+                                                            className='px-5 py-0.5 font-bold border-2 border-solid rounded border-[#ccc] text-gray-700'
+                                                        >
+                                                            Logout
+                                                        </button>
+                                                    )}
                                                     <button
-                                                        onClick={(e) => handleRemoveToken(e)}
+                                                        onClick={handleClose}
                                                         className='px-5 py-0.5 font-bold border-2 border-solid rounded border-[#ccc] text-gray-700'
                                                     >
-                                                        Logout
+                                                        Close
                                                     </button>
-                                                )}
-                                                <button
-                                                    onClick={handleClose}
-                                                    className='px-5 py-0.5 font-bold border-2 border-solid rounded border-[#ccc] text-gray-700'
-                                                >
-                                                    Close
-                                                </button>
-                                            </DialogActions>
-                                        </div>
-                                    </DialogContentText>
-                                </DialogContent>
-                            </Box>
-                        </Dialog>
-                    </div>
-                </Stack>
+                                                </DialogActions>
+                                            </div>
+                                        </DialogContentText>
+                                    </DialogContent>
+                                </Box>
+                            </Dialog>
+                        </div>
+                    </Stack>
+                </div>
             </div>
         </div>
     )

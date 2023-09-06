@@ -100,20 +100,29 @@ export default function Method(props: Props) {
     }
     return (
         <div>
-            <Accordion>
+            <Accordion
+                sx={{
+                    // boxShadow: `0px 2px 1px -1px ${ColorMethodApi[nameMethod]}, 0px 1px 1px 0px ${ColorMethodApi[nameMethod]}, 0px 1px 3px 0px ${ColorMethodApi[nameMethod]}`
+                    overflow: 'hidden',
+                    boxShadow: 'none',
+                    border: 1,
+                    borderColor: ColorMethodApi[nameMethod],
+                    borderRadius: 1
+                }}
+            >
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon fontSize='large' />}
                     aria-controls='panel1a-content'
                     id='panel1a-header'
                     sx={{
                         backgroundColor: ColorMethodTheme[nameMethod],
-                        border: 1,
-                        borderColor: ColorMethodApi[nameMethod],
-                        borderRadius: 1,
+
                         paddingLeft: 1,
                         maxHeight: 20,
                         '&.Mui-expanded': {
-                            minHeight: 40
+                            minHeight: 40,
+                            borderBottom: 1,
+                            borderColor: ColorMethodApi[nameMethod]
                         },
                         '&': {
                             minHeight: 40
@@ -160,11 +169,12 @@ export default function Method(props: Props) {
                             {tryItOut ? 'Cancel' : ' Try it out'}
                         </button>
                     </div>
-                    <form onSubmit={(e) => onSubmit(e)}>
+                    <form onSubmit={(e) => onSubmit(e)} className=' border-t border-solid border-[#ccc]'>
                         <Box
                             sx={{
                                 width: '100%',
-                                backgroundColor: ColorMethodTheme[nameMethod]
+                                backgroundColor: ColorMethodTheme[nameMethod],
+                                paddingBottom: '60px'
                             }}
                         >
                             {fields.length === 0 && (
@@ -193,7 +203,8 @@ export default function Method(props: Props) {
                                                 <div className='flex flex-col col-span-11 gap-5'>
                                                     <Box
                                                         sx={{
-                                                            width: '100%'
+                                                            width: '100%',
+                                                            background: 'white'
                                                         }}
                                                     >
                                                         {typeInput !== 'file' && (
@@ -211,6 +222,16 @@ export default function Method(props: Props) {
                                                                         ? ''
                                                                         : arrayFields[index]
                                                                 }
+                                                                sx={{
+                                                                    '& .MuiOutlinedInput-root': {
+                                                                        '&.Mui-focused fieldset': {
+                                                                            borderColor: 'black'
+                                                                        }
+                                                                    },
+                                                                    '& label.Mui-focused': {
+                                                                        color: 'black'
+                                                                    }
+                                                                }}
                                                                 id={arrayFields[index]}
                                                                 disabled={!tryItOut}
                                                                 required={required ? true : false}
@@ -225,7 +246,7 @@ export default function Method(props: Props) {
                                                         {typeInput === 'file' && (
                                                             <input
                                                                 disabled={!tryItOut}
-                                                                className='px-1 py-2 border border-gray-500 border-solid rounded'
+                                                                className='px-1 py-2 border border-gray-500 border-solid rounded bg-white'
                                                                 type='file'
                                                                 placeholder='click to select your image'
                                                                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
