@@ -11,6 +11,6 @@
         /* overflow-x: hidden; */
     }
 }
-body {
-    /* width: 100vw; */
+#accordion ul li:first-child div {
+    display: block;
 }

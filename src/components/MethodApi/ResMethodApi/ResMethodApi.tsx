@@ -27,7 +27,8 @@ export default function ResMethodApi(props: Props) {
                     <div className='grid grid-cols-12 gap-2 px-5 py-6'>
                         <div className='col-span-1 text-sm'>{resApi.status}</div>
                         <div className='bg-[#333333] text-white p-2 rounded text-xs font-semibold col-span-11 overflow-x-auto'>
-                            {<pre>{JSON.stringify(resApi.data, null, 2)}</pre>}
+                            {resApi.status !== 404 && <pre>{JSON.stringify(resApi.data, null, 2)}</pre>}
+                            {parseInt((resApi.status / 100).toString()) === 4 && <p>{resApi.message}</p>}
                         </div>
                     </div>
                 </Box>

@@ -27,14 +27,15 @@ export default function Header() {
     const handleClickOpen = () => {
         setOpen(true)
     }
-    const handleClose = () => {
+    const handleClose = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        e.preventDefault()
         setOpen(false)
     }
     const handleVerifyToken = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         if (valueInput.trim().length > 0) {
             authorize.setAuthorize(valueInput)
             localStorage.setItem('token', valueInput)
-            handleClose()
+            handleClose(event)
         } else event.preventDefault()
     }
     const handleRemoveToken = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -46,10 +47,10 @@ export default function Header() {
     return (
         <div className='w-full'>
             <div className='bg-[#FAFAFA]'>
-                <p className='text-3xl font-extrabold pb-40 pt-14 w-[1420px] mx-auto '>Swagger Petstore</p>
+                <p className='text-3xl font-extrabold pb-40 pt-14 w-[90%] mx-auto '>Swagger Petstore</p>
             </div>
             <div className='w-full border-b-2 border-solid border-[#DFDFDF]'>
-                <div className='text-sm py-[30px] w-[1420px] mx-auto'>
+                <div className='text-sm py-[30px] w-[90%] mx-auto'>
                     <Stack direction='row' justifyContent='space-between' alignItems='center' spacing={12}>
                         <div>
                             <div className='border-2 border-solid border-gray-800 px-[10px] py-1.5 flex items-center justify-center font-bold rounded text-sm'>
@@ -124,7 +125,7 @@ export default function Header() {
                                                         </button>
                                                     )}
                                                     <button
-                                                        onClick={handleClose}
+                                                        onClick={(e) => handleClose(e)}
                                                         className='px-5 py-0.5 font-bold border-2 border-solid rounded border-[#ccc] text-gray-700'
                                                     >
                                                         Close

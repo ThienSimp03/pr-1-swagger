@@ -94,8 +94,12 @@ export default function Method(props: Props) {
                 })
                 setResApi(result)
             }
-        } catch (error) {
-            alert(error)
+        } catch (error: any) {
+            console.log(error.message)
+            setResApi({
+                status: error.response.status,
+                message: error.message
+            })
         }
     }
     return (
@@ -218,7 +222,7 @@ export default function Method(props: Props) {
                                                                         ? item[arrayFields[index]].default
                                                                         : undefined
                                                                 }
-                                                                label={
+                                                                placeholder={
                                                                     item[arrayFields[index]].default
                                                                         ? ''
                                                                         : arrayFields[index]

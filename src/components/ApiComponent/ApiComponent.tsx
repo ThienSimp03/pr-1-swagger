@@ -39,6 +39,7 @@ export default function ApiComponents(props: Props) {
         <div className='mb-2'>
             <ThemeProvider theme={theme}>
                 <Accordion
+                    defaultExpanded={true}
                     sx={{
                         backgroundColor: 'inherit',
                         boxShadow: 'none',
