@@ -110,17 +110,24 @@ export default function Method(props: Props) {
                         border: 1,
                         borderColor: ColorMethodApi[nameMethod],
                         borderRadius: 1,
+                        paddingLeft: 1,
                         maxHeight: 20,
-                        height: 20,
-                        paddingLeft: 1
+                        '&.Mui-expanded': {
+                            minHeight: 40
+                        },
+                        '&': {
+                            minHeight: 40
+                        }
                     }}
+                    // className='max-h-[10px]'
                 >
                     <div className='flex flex-row items-center justify-between gap-2'>
                         <div>
                             <Box
                                 className={` py-1 font-semibold text-white border border-solid text-sm rounded min-w-[80px] text-center`}
                                 sx={{
-                                    backgroundColor: ColorMethodApi[nameMethod]
+                                    backgroundColor: ColorMethodApi[nameMethod],
+                                    my: 0
                                 }}
                             >
                                 {nameMethod}

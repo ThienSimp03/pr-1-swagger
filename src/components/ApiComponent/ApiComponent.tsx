@@ -38,11 +38,21 @@ export default function ApiComponents(props: Props) {
     return (
         <div className='mb-2'>
             <ThemeProvider theme={theme}>
-                <Accordion className='hover:bg-[#faf9f9]'>
+                <Accordion>
                     <AccordionSummary
+                        className='hover:bg-[#faf9f9]'
                         expandIcon={<ExpandMoreIcon fontSize='large' />}
                         aria-controls='panel1a-content'
                         id='panel1a-header'
+                        sx={{
+                            maxHeight: 30,
+                            '&': {
+                                minHeight: 60
+                            },
+                            '.MuiAccordionSummary-content.Mui-expanded': {
+                                margin: '12px 0 !important'
+                            }
+                        }}
                     >
                         <div className='flex justify-between w-full'>
                             <div className='flex flex-row items-center justify-between gap-2'>
