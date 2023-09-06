@@ -63,8 +63,10 @@ export default function Header() {
                                 onClick={handleClickOpen}
                             >
                                 Authorize
-                                {authorize.authorize === '' && <span className='ml-2'>{<AiFillLock />}</span>}
-                                {authorize.authorize !== '' && <span className='ml-2'>{<AiFillUnlock />}</span>}
+                                {authorize.authorize === '' && <span className='ml-2xl text-xl'>{<AiFillLock />}</span>}
+                                {authorize.authorize !== '' && (
+                                    <span className='ml-2  text-xl'>{<AiFillUnlock />}</span>
+                                )}
                             </div>
                             <Dialog open={open} onClose={handleClose}>
                                 <Box
