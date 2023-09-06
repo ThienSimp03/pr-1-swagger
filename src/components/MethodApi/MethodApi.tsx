@@ -142,6 +142,7 @@ export default function Method(props: Props) {
                                 {nameMethod}
                             </Box>
                         </div>
+                        <span className='font-bold'>{url}</span>
                         <span className='text-[13px]'>{title}</span>
                     </div>
                 </AccordionSummary>
