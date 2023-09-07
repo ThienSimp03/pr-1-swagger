@@ -188,7 +188,7 @@ export default function Method(props: Props) {
                             {fields.length > 0 && (
                                 <div className='grid grid-cols-12 gap-2 px-5 pt-6'>
                                     <div className='col-span-12 flex'>
-                                        <div className='flex-none pr-5 min-w-[120px] text-xs'>Name</div>
+                                        <div className='flex-none pr-5 min-w-[150px] text-xs'>Name</div>
                                         <div className='flex flex-col flex-1 gap-5 text-xs'>Description</div>
                                     </div>
                                     <div className='col-span-12 border-[#ACB3BE] border-solid border-b-[0.5px]'></div>
@@ -198,11 +198,11 @@ export default function Method(props: Props) {
                                         return (
                                             <Fragment key={index}>
                                                 <div className='col-span-12 flex'>
-                                                    <div className='flex-none pr-5 min-w-[120px]'>
-                                                        <span className='text-xs font-bold'>
+                                                    <div className='flex-none pr-5 min-w-[150px]'>
+                                                        <span className=' font-bold'>
                                                             {arrayFields[index]}
                                                             {required && (
-                                                                <span className='relative  top-[-10px] text-xs font-semibold text-red-500'>
+                                                                <span className='relative  top-[-10px] text-[9px] font-semibold text-red-500'>
                                                                     *required
                                                                 </span>
                                                             )}
