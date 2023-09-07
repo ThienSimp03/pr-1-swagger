@@ -11,9 +11,6 @@ export default function ExampleMethodApi(props: Props) {
     const { backgroundColor, example } = props
     return (
         <div>
-            <div className='flex items-center justify-between px-5 py-2 mb-2'>
-                <p className='font-bold'>Example</p>
-            </div>
             <Box
                 sx={{
                     width: '100%',
@@ -22,8 +19,8 @@ export default function ExampleMethodApi(props: Props) {
                 className=' border-t border-solid border-[#ccc]'
             >
                 <div className='grid grid-cols-12 gap-2 px-5 py-6'>
-                    <div className='col-span-1 text-xs'>Code</div>
-                    <div className='col-span-11 text-xs'>Description</div>
+                    <div className='col-span-1 text-xs font-bold'>Code</div>
+                    <div className='col-span-11 text-xs font-bold'>Description</div>
                     <div className='col-span-12 border-[#000] border-solid border-b-[0.5px]'></div>
                     {example &&
                         example.map((item, index) => (

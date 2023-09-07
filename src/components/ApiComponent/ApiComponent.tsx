@@ -62,7 +62,8 @@ export default function ApiComponents(props: Props) {
                             '&': {
                                 minHeight: 60
                             },
-                            borderBottom: '1px solid #C1C3C7'
+                            borderBottom: '1px solid #C1C3C7',
+                            px: 1
                         }}
                     >
                         <div className='flex justify-between w-full'>
@@ -71,11 +72,15 @@ export default function ApiComponents(props: Props) {
                                 <span className='text-sm'>{title}</span>
                             </div>
                             <div className='flex flex-row items-center justify-between gap-2'>
-                                <span className='text-blue-700 text-sm mr-2'>{description}</span>
+                                <span className='text-sm mr-2'>{description}</span>
                             </div>
                         </div>
                     </AccordionSummary>
-                    <AccordionDetails>
+                    <AccordionDetails
+                        sx={{
+                            px: 0
+                        }}
+                    >
                         <div className='flex flex-col gap-2'>
                             {methods.map((method, index) => (
                                 <Method method={method} key={index} />

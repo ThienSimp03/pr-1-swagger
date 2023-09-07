@@ -163,7 +163,7 @@ export default function Method(props: Props) {
                     >
                         {title}
                     </Box>
-                    <div className='flex items-center justify-between px-5 py-2 mb-2'>
+                    <div className='flex items-center justify-between px-5 py-2'>
                         <p className='font-bold'>Parameters</p>
                         <button
                             className={`px-5 py-0.5 font-bold border-2 border-solid rounded-md text-sm ${

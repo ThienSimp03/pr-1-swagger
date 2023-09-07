@@ -50,7 +50,7 @@ export default function Header() {
                 <p className='text-3xl font-extrabold pb-40 pt-14 w-[90%] mx-auto '>Swagger Petstore</p>
             </div>
             <div className='w-full border-b-2 border-solid border-[#DFDFDF]'>
-                <div className='text-sm py-[30px] w-[90%] mx-auto'>
+                <div className='text-sm py-[30px] w-[95%] mx-auto'>
                     <Stack direction='row' justifyContent='space-between' alignItems='center' spacing={12}>
                         <div>
                             <div className='border-2 border-solid border-gray-800 px-[10px] py-1.5 flex items-center justify-center font-bold rounded text-sm'>
