@@ -191,7 +191,7 @@ export default function Method(props: Props) {
                                         <div className='flex-none pr-5 min-w-[120px] text-xs'>Name</div>
                                         <div className='flex flex-col flex-1 gap-5 text-xs'>Description</div>
                                     </div>
-                                    <div className='col-span-12 border-[#000] border-solid border-b-[0.5px]'></div>
+                                    <div className='col-span-12 border-[#ACB3BE] border-solid border-b-[0.5px]'></div>
                                     {/* Handle body */}
                                     {fields.map((item, index) => {
                                         const { typeInput, required } = item[arrayFields[index]]

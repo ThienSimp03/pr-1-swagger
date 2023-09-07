@@ -21,7 +21,7 @@ export default function ExampleMethodApi(props: Props) {
                 <div className='grid grid-cols-12 gap-2 px-5 py-6'>
                     <div className='col-span-1 text-xs font-bold'>Code</div>
                     <div className='col-span-11 text-xs font-bold'>Description</div>
-                    <div className='col-span-12 border-[#000] border-solid border-b-[0.5px]'></div>
+                    <div className='col-span-12 border-[#ACB3BE] border-solid border-b-[0.5px]'></div>
                     {example &&
                         example.map((item, index) => (
                             <Fragment key={index}>
