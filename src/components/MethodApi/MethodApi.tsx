@@ -188,8 +188,10 @@ export default function Method(props: Props) {
                             {fields.length > 0 && (
                                 <div className='grid grid-cols-12 gap-2 px-5 pt-6'>
                                     <div className='col-span-12 flex'>
-                                        <div className='flex-none pr-5 min-w-[150px] text-xs'>Name</div>
-                                        <div className='flex flex-col flex-1 gap-5 text-xs'>Description</div>
+                                        <div className='flex-none pr-5 min-w-[150px] text-xs font-semibold'>Name</div>
+                                        <div className='flex flex-col flex-1 gap-5 text-xs font-semibold'>
+                                            Description
+                                        </div>
                                     </div>
                                     <div className='col-span-12 border-[#ACB3BE] border-solid border-b-[0.5px]'></div>
                                     {/* Handle body */}
